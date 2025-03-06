@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gotta go fast</title>
+    <style>
+        /*STYLE FOR HEADER*/
+        .header {
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: oblique;
+            color: red;
+            text-align: center;
+        }
+
+        /*STYLE FOR SUBHEADER*/
+        .subheader {
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: oblique;
+            color: blue;
+            text-align: center;
+        }
+
+        /* STYLE FOR THE SUBMIT BUTTON */
+        .submit-button {
+            display: block;
+            margin: auto;
+        }
+
+        #input1 {
+            display: block;
+            margin: auto;
+            width: 30px;
+        }
+
+        #input2 {
+            display: block;
+            margin: auto;
+            width: 30px;
+        }
+
+        /* STYLE FOR THE IMAGE */
+        #displayedImage {
+            display: none; /* This line is mandatory */
+            display: block;
+            margin-top: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 60%;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="header">gotta go fast!</h2>
+    <h3 class="subheader">fastest tracks in the west!... and east. and north and south actually. all over the world.</h3>
+
+    
+    <!-- INPUT FIELD FOR 1 CHARACTER -->
+    <input type="text" id="input1" maxlength="1">
+    <br>
+    <input type="text" id="input2" maxlength="1">
+    <br>
+
+
+    <!-- BUTTON TO DISPLAY IMAGE -->
+    <button onclick="displayImage()" class="submit-button">VROOOOOOOOOM</button>
+
+    <!-- IMAGE TO DISPLAY -->
+    <img id="displayedImage" src="" alt="Displayed Image">
+
+
+    <!-- Image Display Script Below -->
+    <script>
+
+        // Array of images
+        // DIRECTIONS: UPDATE THE URLS WITH THE RELATIVE LINKS OF YOUR IMAGES
+        const europe_tracks = [
+            "images/red-bull-ring-(Austria-GP).png",
+            "images/circuit-zandvoort-(Dutch-GP).png",
+            "images/circuit-de-monaco-(Monaco-GP).png",
+            "images/autodromo-internazionale-enzo-e-dino-ferrari-(Emilia-Romagna-GP).png",
+            "images/circuit-de-barcelona-catalunya-(Spanish-GP).png",
+            "images/hungaroring-(Hungary-GP).png",
+            "images/autodromo-nazionale-monza-(Italy-GP).png",
+            "images/silverstone-circuit-(Great-Britain-GP).png",
+            "images/circuit-de-spa-francorchamps-(Beglian-GP).png",
+        ];
+
+        const americas_tracks = [
+            "images/autódromo-josé-carlos-pace-(Brazil-GP).png",
+            "images/circuit-gilles-villeneuve-(Canada-GP).png",
+            "images/autódromo-hermanos-rodríguez-(Mexico-GP).png",
+            "images/miami-intl-circuit-(Miami-GP).png",
+            "images/las-vegas-strip-circuit-(Las-Vegas-GP).png",
+            "images/circuit-of-the-americas-(US-GP).png",
+        ];
+
+        const middle_east_tracks = [
+            "images/lusail-international-circuit-(Qatar-GP).png",
+            "images/yas-marina-circuit-(Abu-Dhabi-GP).png",
+            "images/jeddah-corniche-circuit-(Saudi Arabian-GP).png",
+            "images/bahrain-intl-circuit-(Bahrain-GP).png",
+            "images/baku-city-circuit-(Azerbaijan-GP).png",
+        ];
+
+        const east_asia_tracks = [
+            "images/suzuka-circuit-(Japanese-GP).png",
+            "images/shanghai-intl-circuit-(Chinese-GP).png",
+            "images/marina-bay-street-circuit-(Singapore-GP).png",
+        ];
+
+        const oceania_tracks = [
+            "images/albert-park-GP circuit-(Aus-GP).png",
+        ];
+
+
+        function displayImage() {
+            const input1_letter = document.getElementById("input1").value.toUpperCase();
+            const input2_letter = document.getElementById("input2").value.toUpperCase();
+            const imgElement = document.getElementById("displayedImage");
+        
+
+            if (input1_letter == "A") {
+                image_list_name=europe_tracks;
+            } else if (input1_letter == "B") {
+                image_list_name=americas_tracks;
+            } else if (input1_letter == "C") {
+                image_list_name=middle_east_tracks;
+            } else if (input1_letter == "D") {
+                image_list_name=east_asia_tracks;
+            } else if (input1_letter == "E") {
+                image_list_name=oceania_tracks;
+            } else {
+                imgElement.src = "images/stroll_error.gif";
+                imgElement.style.display = "block";
+                return;
+            }
+
+            // Assign an image based on character (A-Z)
+            const index = input2_letter.charCodeAt(0) - 65; // 'A' is 65 in ASCII
+            if (index >= 0 && index < image_list_name.length) {
+                imgElement.src = image_list_name[index];
+                imgElement.style.display = "block";
+            } else {
+                /* 
+                alert("Please enter a letter between A and Z.");
+                imgElement.style.display = "none";
+                */
+
+                // IF INVALID INPUT IS ENTERED, DISPLAY ALTERNATE IMAGE
+                imgElement.src = "images/stroll_error.gif";
+                imgElement.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
